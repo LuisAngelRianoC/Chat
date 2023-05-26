@@ -9,7 +9,7 @@ app.get('/', function (req,res) {
     res.render('index.ejs');
 });
 
-io.sockets.on("connection", function(socket) {
+io.on("connection", function(socket) {
 
 // Evento para cuando un usuario se conecta
     socket.on("username", function(username) {
@@ -27,14 +27,14 @@ io.sockets.on("connection", function(socket) {
       );
     });
   
-    socket.on("chat_message", function(mensaje) {
+    socket.on("chat message", function(mensaje) {
       io.emit(
-        "chat_message",
+        "chat message",
         "<strong>" + socket.username + "</strong>: " + mensaje
       );
     });
   });
 
-const server = http.listen(puerto,function() {
+http.listen(puerto,function() {
     console.log(`Puerto ${puerto} listo`);
 })
